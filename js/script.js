@@ -1,62 +1,76 @@
 // Show current date in header
 let currentDayEl = $('#currentDay');
-// currentDayE1.text(moment().format("LLLL").split(" ").slice(0, 4).join(" "));
 let timeblocksEl = $('#timeblocks');
 
-const formEl = $('#event-form');
-const now = moment();
-const currentHour = parseInt(now.format("H"));
+let formEl = $('#event-form');
+let now = moment();
+let currentHour = moment().hour();
 
-const currentDay = now.format('dddd, MMMM Do');
+let currentDay = moment().format('LLLL');
 currentDayEl.text(currentDay);
 
-// check if data from the previous day exist, if yes, erase all keys
+// clear event for the previous day
 let storedCurrentDay = localStorage.getItem('currentDay');
+
 if (storedCurrentDay !== null && storedCurrentDay !== currentDay) {
     localStorage.clear();
 }
 
-let hourArray = new Array(24);
+let hoursArray = new Array(12);
 let setCurrentDay = false;
 
-// set up bootstrap grid for timeblocks
+
+// set coloured timeblocks
+
 let bgColorClass = "past";
-for (let i = 0; i < hourArray.length; i++) {
+for (let i = 0; i < hoursArray.length; i++) {
     if (i === currentHour) {
         bgColorClass = "present";
     } else if (i >= currentHour) {
         bgColorClass = "future";
     }
-    let hourText = moment().hour(i).format("hA"); // set hour in 12-hour AM/PM format  
-    
-    // get item from localStorage
-    let item = localStorage.getItem(hourText); // get saved item from localStorage
 
-    // create div for Hour column
+     // Add hours to the planner
+
+ let hourText = moment().hour(i).format("hA"); 
+   
+
+    // GET saved item from local Storage
+
+    let item = localStorage.getItem(hourText);
+
+    // add table cells
+
     let rowDiv = $('<div>');
     rowDiv.addClass('row border-top border-secondary');
+
     let hourColDiv = $('<div>');
     hourColDiv.addClass('col-2 border-right');
+
     hourColDiv.text(hourText);
     rowDiv.append(hourColDiv);
 
-    // create div for Event column
+    // Add input for Event row
+
     let eventDiv = $('<div>');
     eventDiv.addClass('col-9 border-right align-top '+bgColorClass);
-    // create textarea element for inputing event
+
+    // add textarea for writing events
+
     let textareaEl = $('<textarea>');
     textareaEl.addClass('form-control bg-transparent');
     textareaEl.attr('data-ta-hour', hourText);
     textareaEl.attr('rows', 3);
     textareaEl.attr('maxlength', 100);
-    textareaEl.val(item); // display saved item
+    textareaEl.val(item);
     eventDiv.append(textareaEl);
     rowDiv.append(eventDiv);
 
-    // create div for Save button column
+
+//add save button for saving the task
     let saveDiv = $('<div>');
     saveDiv.addClass('col-1');
-    // add a save button to the last column
+
     let saveBtn = $('<button>');
     saveBtn.addClass('btn btn-primary');
     saveBtn.attr('data-toggle', 'button');
@@ -65,26 +79,28 @@ for (let i = 0; i < hourArray.length; i++) {
     saveDiv.append(saveBtn);
     rowDiv.append(saveDiv);
 
-    // create a form for each hour
+    // add textarea
     let formEl = $('<form>');
     formEl.attr('data-form-hour', hourText);
     formEl.append(rowDiv);
 
-    // append the form to the timeblocks container
+    // add the form to containers
     timeblocksEl.append(formEl);
 
     formEl.submit(function( event ) {
         event.preventDefault();
 
+        // set current date to local Storage
         if (!setCurrentDay) {
-            localStorage.setItem('currentDay', currentDay); // set today's date to localStorage
+            localStorage.setItem('currentDay', currentDay); 
             setCurrentDay = true;
         }
 
-        let val = $('[data-ta-hour=' + hourText + ']').val().trim(); // get textarea value
-        // console.log("hourText: "+hourText);
-        // console.log("textarea value: "+val);
-        localStorage.setItem(hourText, val); // set textarea value to localStorage
+        // get textarea value and also set value to local storage
+        let val = $('[data-ta-hour=' + hourText + ']').val().trim();
+ 
+
+        localStorage.setItem(hourText, val);
     });
 
 
