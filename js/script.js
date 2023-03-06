@@ -13,7 +13,7 @@ currentDayEl.text(currentDay);
 let storedCurrentDay = localStorage.getItem('currentDay');
 
 if (storedCurrentDay !== null && storedCurrentDay !== currentDay) {
-    localStorage.clear();
+	localStorage.clear();
 }
 
 let hoursArray = [9, 10, 11, 12, 13, 14, 15, 16, 17];
@@ -21,100 +21,101 @@ let setCurrentDay = false;
 
 // set coloured timeblocks
 for (let i = 0; i < hoursArray.length; i++) {
-    let bgColorClass = "past";
-    if (hoursArray[i] === currentHour) {
-        bgColorClass = "present";
-    } else if (hoursArray[i] > currentHour) {
-        bgColorClass = "future";
-    }
+	let bgColorClass = 'past';
+	if (hoursArray[i] === currentHour) {
+		bgColorClass = 'present';
+	} else if (hoursArray[i] > currentHour) {
+		bgColorClass = 'future';
+	}
 
-    // Add hours to the planner
+	// Add hours to the planner
 
-    let hourText = moment().hour(hoursArray[i]).format("hA");
+	let hourText = moment().hour(hoursArray[i]).format('hA');
 
-    // GET saved item from local Storage
+	// GET saved item from local Storage
 
-    let item = localStorage.getItem(hourText);
+	let item = localStorage.getItem(hourText);
 
-    // add table cells
+	// add table cells
 
-    let rowDiv = $('<div>');
-rowDiv.addClass('row border-top border-secondary bgColorClass'); // Add "bgColorClass" here
+	let rowDiv = $('<div>');
+	rowDiv.addClass('row border-top border-secondary bgColorClass'); // Add "bgColorClass" here
 
-let hourColDiv = $('<div>');
-hourColDiv.addClass('col-2 border-right');
+	let hourColDiv = $('<div>');
+	hourColDiv.addClass('col-2 border-right');
 
-hourColDiv.text(hourText);
-rowDiv.append(hourColDiv);
+	hourColDiv.text(hourText);
+	rowDiv.append(hourColDiv);
 
-// Add input for Event row
+	// Add input for Event row
 
-let eventDiv = $('<div>');
-eventDiv.addClass('col-9 border-right align-top'); // Remove "present" and "future" here
+	let eventDiv = $('<div>');
+	eventDiv.addClass('col-9 border-right align-top'); // Remove "present" and "future" here
 
-// add textarea for writing events
+	// add textarea for writing events
 
-let textareaEl = $('<textarea>');
-textareaEl.addClass('form-control bg-transparent');
-textareaEl.attr('data-ta-hour', hourText);
-textareaEl.attr('rows', 3);
-textareaEl.attr('maxlength', 100);
-textareaEl.val(item);
-eventDiv.append(textareaEl);
-rowDiv.append(eventDiv);
+	let textareaEl = $('<textarea>');
+	textareaEl.addClass('form-control bg-transparent');
+	textareaEl.attr('data-ta-hour', hourText);
+	textareaEl.attr('rows', 3);
+	textareaEl.attr('maxlength', 100);
+	textareaEl.val(item);
+	eventDiv.append(textareaEl);
+	rowDiv.append(eventDiv);
 
-    //add save button for saving the task
-    let saveDiv = $('<div>');
-    saveDiv.addClass('col-1');
+	//add save button for saving the task
+	let saveDiv = $('<div>');
+	saveDiv.addClass('col-1');
 
+	let saveBtn = $('<button>');
+	saveBtn.addClass('btn btn-primary');
+	saveBtn.attr('data-toggle', 'button');
+	saveBtn.attr('type', 'submit');
 
+	saveDiv.append(saveBtn);
+	rowDiv.append(saveDiv);
+	// add icon instead of the word "Save"
+	let iconEl = $('<i>');
+	iconEl.addClass('fas fa-save');
+	saveBtn.append(iconEl);
 
+	// Remove this line:
+	// saveDiv.append(saveBtn);
 
-    let saveBtn = $('<button>');
-    saveBtn.addClass('btn btn-primary');
-    saveBtn.attr('data-toggle', 'button');
-    saveBtn.attr('type', 'submit');
-    
-saveDiv.append(saveBtn);
-rowDiv.append(saveDiv);
-// add icon instead of the word "Save"
-let iconEl = $('<i>');
-iconEl.addClass('fas fa-save');
-saveBtn.append(iconEl);
+	// add textarea
+	let formEl = $('<form>');
+	formEl.attr('data-form-hour', hourText);
+	formEl.append(rowDiv);
 
-// Remove this line:
-// saveDiv.append(saveBtn);
+	// add the form to containers
+	timeblocksEl.append(formEl);
 
-// add textarea
-let formEl = $('<form>');
-formEl.attr('data-form-hour', hourText);
-formEl.append(rowDiv);
+	formEl.submit(function (event) {
+		event.preventDefault();
 
-// add the form to containers
-timeblocksEl.append(formEl);
+		// set current date to local Storage
+		if (!setCurrentDay) {
+			localStorage.setItem('currentDay', currentDay);
+			setCurrentDay = true;
+		}
 
+		// get textarea value and also set value to local storage
+		let val = $('[data-ta-hour=' + hourText + ']')
+			.val()
+			.trim();
 
-    formEl.submit(function( event ) {
-        event.preventDefault();
-
-        // set current date to local Storage
-        if (!setCurrentDay) {
-            localStorage.setItem('currentDay', currentDay); 
-            setCurrentDay = true;
-        }
-
-        // get textarea value and also set value to local storage
-        let val = $('[data-ta-hour=' + hourText + ']').val().trim();
-
-        // Only save to local storage if there is a valid value in the textarea
-        if (val) {
-            localStorage.setItem(hourText, val);
-        }
-
-    });
+		// Only save to local storage if there is a valid value in the textarea
+		if (val) {
+			localStorage.setItem(hourText, val);
+		}
+	});
 }
 
-  
-  localStorage.clear();
+// Button function to clear local storage and clear contents
+$('#clearFieldsBtn').click(function (event) {
+	event.preventDefault();
+	$('textarea').val('');
+	localStorage.clear();
+});
 
-
+localStorage.clear();
