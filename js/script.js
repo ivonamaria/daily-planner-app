@@ -76,23 +76,25 @@ for (let i = 0; i < hoursArray.length; i++) {
     saveBtn.addClass('btn btn-primary');
     saveBtn.attr('data-toggle', 'button');
     saveBtn.attr('type', 'submit');
-    saveDiv.append(saveBtn);
-    rowDiv.append(saveDiv);
-    // add icon instead of the word "Save"
+    
+saveDiv.append(saveBtn);
+rowDiv.append(saveDiv);
+// add icon instead of the word "Save"
 let iconEl = $('<i>');
 iconEl.addClass('fas fa-save');
 saveBtn.append(iconEl);
 
-saveDiv.append(saveBtn);
-rowDiv.append(saveDiv);
+// Remove this line:
+// saveDiv.append(saveBtn);
 
-    // add textarea
-    let formEl = $('<form>');
-    formEl.attr('data-form-hour', hourText);
-    formEl.append(rowDiv);
+// add textarea
+let formEl = $('<form>');
+formEl.attr('data-form-hour', hourText);
+formEl.append(rowDiv);
 
-    // add the form to containers
-    timeblocksEl.append(formEl);
+// add the form to containers
+timeblocksEl.append(formEl);
+
 
     formEl.submit(function( event ) {
         event.preventDefault();
@@ -106,8 +108,13 @@ rowDiv.append(saveDiv);
         // get textarea value and also set value to local storage
         let val = $('[data-ta-hour=' + hourText + ']').val().trim();
 
+        // Only save to local storage if there is a valid value in the textarea
+     
 
         localStorage.setItem(hourText, val);
     });
 }
 
+
+
+  
