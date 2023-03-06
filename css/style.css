@@ -7,12 +7,10 @@ body {
 textarea {
   background: transparent;
   border: none;
-  resize: none;
-  color: #000000;
   border-left: 2px solid black;
+  color: #000000;
   padding: 10px;
-  padding: 5px;
-
+  resize: none;
 }
 
 .jumbotron {
@@ -28,40 +26,39 @@ textarea {
   white-space: pre-wrap;
 }
 
-#timeblock {
+.timeblock {
   text-align: center;
   border-radius: 5px;
   height: 100px;
-  border: 3px solid black;
+  border: 5px solid black;
 }
 
-.row {
+.timeblock__row {
   white-space: pre-wrap;
   height: 80px;
   border-top: 1px solid rgb(7, 7, 7);
 }
 
-.hour {
-  background-color: #ffffff;
+.timeblock__hour {
+  background-color: #160c0c;
   color: #000000;
   border-top: 10px solid #000000;
 }
 
-.past {
-  background-color: #d3d3d3;
+.timeblock__past {
+  background-color: #094511;
   color: white;
 }
 
-.present {
+.timeblock__present {
   background-color: #ff6961;
   color: white;
 }
 
-.future {
+.timeblock__future {
   background-color: #77dd77;
   color: white;
 }
-
 
 .btn-primary {
   background-color: #85919d;
@@ -76,16 +73,14 @@ textarea {
   transition: all 0.3s ease-in-out;
 }
 
-.bgColorClass .past {
-  background-color: #d3d3d3; /* gray */
+.form__save-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.bgColorClass .present {
-  background-color: #ff6961; /* red */
-}
-
-.bgColorClass .future {
-  background-color: #77dd77; /* green */
+.form__save-icon {
+  margin-right: 5px;
 }
 
 

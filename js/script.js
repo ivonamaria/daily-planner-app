@@ -16,14 +16,12 @@ if (storedCurrentDay !== null && storedCurrentDay !== currentDay) {
     localStorage.clear();
 }
 
-let hoursArray = new Array(9, 10, 11, 12, 13, 14, 15, 16, 17);
+let hoursArray = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 let setCurrentDay = false;
 
-
 // set coloured timeblocks
-
-let bgColorClass = "past";
 for (let i = 0; i < hoursArray.length; i++) {
+    let bgColorClass = "past";
     if (hoursArray[i] === currentHour) {
         bgColorClass = "present";
     } else if (hoursArray[i] > currentHour) {
@@ -41,29 +39,29 @@ for (let i = 0; i < hoursArray.length; i++) {
     // add table cells
 
     let rowDiv = $('<div>');
-    rowDiv.addClass('row border-top border-secondary');
+rowDiv.addClass('row border-top border-secondary bgColorClass'); // Add "bgColorClass" here
 
-    let hourColDiv = $('<div>');
-    hourColDiv.addClass('col-2 border-right');
+let hourColDiv = $('<div>');
+hourColDiv.addClass('col-2 border-right');
 
-    hourColDiv.text(hourText);
-    rowDiv.append(hourColDiv);
+hourColDiv.text(hourText);
+rowDiv.append(hourColDiv);
 
-    // Add input for Event row
+// Add input for Event row
 
-    let eventDiv = $('<div>');
-    eventDiv.addClass('col-9 border-right align-top '+bgColorClass);
+let eventDiv = $('<div>');
+eventDiv.addClass('col-9 border-right align-top'); // Remove "present" and "future" here
 
-    // add textarea for writing events
+// add textarea for writing events
 
-    let textareaEl = $('<textarea>');
-    textareaEl.addClass('form-control bg-transparent');
-    textareaEl.attr('data-ta-hour', hourText);
-    textareaEl.attr('rows', 3);
-    textareaEl.attr('maxlength', 100);
-    textareaEl.val(item);
-    eventDiv.append(textareaEl);
-    rowDiv.append(eventDiv);
+let textareaEl = $('<textarea>');
+textareaEl.addClass('form-control bg-transparent');
+textareaEl.attr('data-ta-hour', hourText);
+textareaEl.attr('rows', 3);
+textareaEl.attr('maxlength', 100);
+textareaEl.val(item);
+eventDiv.append(textareaEl);
+rowDiv.append(eventDiv);
 
     //add save button for saving the task
     let saveDiv = $('<div>');
@@ -109,12 +107,14 @@ timeblocksEl.append(formEl);
         let val = $('[data-ta-hour=' + hourText + ']').val().trim();
 
         // Only save to local storage if there is a valid value in the textarea
-     
+        if (val) {
+            localStorage.setItem(hourText, val);
+        }
 
-        localStorage.setItem(hourText, val);
     });
 }
 
-
-
   
+  localStorage.clear();
+
+
