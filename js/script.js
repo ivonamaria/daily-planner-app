@@ -69,13 +69,22 @@ for (let i = 0; i < hoursArray.length; i++) {
     let saveDiv = $('<div>');
     saveDiv.addClass('col-1');
 
+
+
+
     let saveBtn = $('<button>');
     saveBtn.addClass('btn btn-primary');
     saveBtn.attr('data-toggle', 'button');
     saveBtn.attr('type', 'submit');
-    saveBtn.text('Save');
     saveDiv.append(saveBtn);
     rowDiv.append(saveDiv);
+    // add icon instead of the word "Save"
+let iconEl = $('<i>');
+iconEl.addClass('fas fa-save');
+saveBtn.append(iconEl);
+
+saveDiv.append(saveBtn);
+rowDiv.append(saveDiv);
 
     // add textarea
     let formEl = $('<form>');
@@ -101,3 +110,4 @@ for (let i = 0; i < hoursArray.length; i++) {
         localStorage.setItem(hourText, val);
     });
 }
+

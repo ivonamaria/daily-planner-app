@@ -38,7 +38,7 @@ textarea {
 .row {
   white-space: pre-wrap;
   height: 80px;
-  border-top: 1px solid white;
+  border-top: 1px solid rgb(7, 7, 7);
 }
 
 .hour {
@@ -62,16 +62,30 @@ textarea {
   color: white;
 }
 
-.saveBtn {
-  border-left: 1px solid rgb(255, 255, 255);
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  background-color: #06aed5;
-  color: white;
+
+.btn-primary {
+  background-color: #85919d;
+  border-color: #151d25;
+  margin-top: 20px;
+  width: 80px;
 }
 
-.saveBtn i:hover {
-  font-size: 20px;
+.btn-primary:hover {
+  background-color: #b7c0ca;
+  border-color: #262a2f;
   transition: all 0.3s ease-in-out;
 }
+
+.bgColorClass .past {
+  background-color: #d3d3d3; /* gray */
+}
+
+.bgColorClass .present {
+  background-color: #ff6961; /* red */
+}
+
+.bgColorClass .future {
+  background-color: #77dd77; /* green */
+}
+
 
