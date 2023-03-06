@@ -16,7 +16,7 @@ if (storedCurrentDay !== null && storedCurrentDay !== currentDay) {
     localStorage.clear();
 }
 
-let hoursArray = new Array(12);
+let hoursArray = new Array(9, 10, 11, 12, 13, 14, 15, 16, 17);
 let setCurrentDay = false;
 
 
@@ -24,16 +24,15 @@ let setCurrentDay = false;
 
 let bgColorClass = "past";
 for (let i = 0; i < hoursArray.length; i++) {
-    if (i === currentHour) {
+    if (hoursArray[i] === currentHour) {
         bgColorClass = "present";
-    } else if (i >= currentHour) {
+    } else if (hoursArray[i] > currentHour) {
         bgColorClass = "future";
     }
 
-     // Add hours to the planner
+    // Add hours to the planner
 
- let hourText = moment().hour(i).format("hA"); 
-   
+    let hourText = moment().hour(hoursArray[i]).format("hA");
 
     // GET saved item from local Storage
 
@@ -66,8 +65,7 @@ for (let i = 0; i < hoursArray.length; i++) {
     eventDiv.append(textareaEl);
     rowDiv.append(eventDiv);
 
-
-//add save button for saving the task
+    //add save button for saving the task
     let saveDiv = $('<div>');
     saveDiv.addClass('col-1');
 
@@ -98,11 +96,8 @@ for (let i = 0; i < hoursArray.length; i++) {
 
         // get textarea value and also set value to local storage
         let val = $('[data-ta-hour=' + hourText + ']').val().trim();
- 
+
 
         localStorage.setItem(hourText, val);
     });
-
-
-
 }
