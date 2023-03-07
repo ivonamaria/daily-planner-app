@@ -48,17 +48,17 @@ textarea {
 
 .timeblock__past {
   background-color: #094511;
-  color: white;
+  /* color: white; */
 }
 
 .timeblock__present {
   background-color: #ff6961;
-  color: white;
+  /* color: white; */
 }
 
 .timeblock__future {
   background-color: #77dd77;
-  color: white;
+  /* color: white; */
 }
 
 .btn-primary {

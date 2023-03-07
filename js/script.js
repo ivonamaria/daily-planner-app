@@ -16,8 +16,6 @@ if (storedCurrentDay !== null && storedCurrentDay !== currentDay) {
 	localStorage.clear();
 }
 
-
-
 let hoursArray = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 let setCurrentDay = false;
 
