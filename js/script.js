@@ -118,4 +118,3 @@ $('#clearFieldsBtn').click(function (event) {
 	localStorage.clear();
 });
 
-localStorage.clear();

@@ -1,19 +1,22 @@
-# Third-Party APIs: Work Day Scheduler
 
-## Task
+# Work Day Scheduler
 
-I have created a simple calendar application that allows a user to save events for each hour of the day. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
+I have created a simple calendar application that allows a user to save events for each hour of the day. This application will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
 
 I have used the [Moment.js](https://momentjs.com/) library to work with date and time. 
 
-## User Story
+# Screenshots
 
-```md
-AS AN employee with a busy schedule
-I WANT to add important events to a daily planner
-SO THAT I can manage my time effectively
-```
+![Alt Text](/images/Screenshot%202023-03-07%20at%2012.53.35.png)
+
+![Alt Text](/images/Screenshot%202023-03-07%20at%2012.55.42.png)
+
+# Credits
+
+Stack overflow - https://stackoverflow.com/
+
+1:1 Tutoring sessions
  
-## License
+# License
 
 N/A
