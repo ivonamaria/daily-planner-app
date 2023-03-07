@@ -16,12 +16,14 @@ if (storedCurrentDay !== null && storedCurrentDay !== currentDay) {
 	localStorage.clear();
 }
 
+
+
 let hoursArray = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 let setCurrentDay = false;
 
 // set coloured timeblocks
 for (let i = 0; i < hoursArray.length; i++) {
-	let bgColorClass = 'past';
+	let bgColorClass = hoursArray[i] < currentHour ? "past" : hoursArray[i] === currentHour ? "present" : "future";
 	if (hoursArray[i] === currentHour) {
 		bgColorClass = 'present';
 	} else if (hoursArray[i] > currentHour) {
@@ -78,9 +80,6 @@ for (let i = 0; i < hoursArray.length; i++) {
 	let iconEl = $('<i>');
 	iconEl.addClass('fas fa-save');
 	saveBtn.append(iconEl);
-
-	// Remove this line:
-	// saveDiv.append(saveBtn);
 
 	// add textarea
 	let formEl = $('<form>');
