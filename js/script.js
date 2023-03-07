@@ -41,7 +41,7 @@ for (let i = 0; i < hoursArray.length; i++) {
 	// add table cells
 
 	let rowDiv = $('<div>');
-	rowDiv.addClass('row border-top border-secondary bgColorClass'); // Add "bgColorClass" here
+   rowDiv.addClass('row border-top border-secondary ' + bgColorClass); 
 
 	let hourColDiv = $('<div>');
 	hourColDiv.addClass('col-2 border-right');
