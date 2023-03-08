@@ -6,7 +6,7 @@ I have used the [Moment.js](https://momentjs.com/) library to work with date and
 
 # Links
 
-Work Day Schedular - [Link for delpolyed application](https://github.com/ivonamaria/daily-planner-app/deployments/activity_log?environment=github-pages)
+Work Day Schedular - [Link for delpolyed application](https://ivonamaria.github.io/daily-planner-app/)
 
 Repository Link - [Repo link](https://github.com/ivonamaria/daily-planner-app)
 
